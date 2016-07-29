@@ -14,7 +14,7 @@
 デモ
 ------
 
-[DEMO](http://github.develo.org/jquery.smoothPageScroll/)
+[DEMO](http://github.develo.org/jquery.smoothPageScroll/example/)
 
 
 必要なプラグイン
