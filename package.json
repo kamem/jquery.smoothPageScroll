@@ -1,6 +1,6 @@
 {
   "name": "jquery.smooth-page-scroll",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Performs a smooth page scroll to an anchor on the same page.",
   "author": {
     "name": "kamem",
