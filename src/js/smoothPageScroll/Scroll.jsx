@@ -30,11 +30,25 @@ export class Scroll {
 		};
 	}
 
+	//Last resort for the difference of each browser
+	getWindowSize() {
+		const element = document.createElement('p');
+		const body = $("body")[0];
+		element.style.backgroundColor = 'fixed';
+		element.style.width = element.style.height = '100%';
+		body.appendChild(element);
+		const {clientWidth, clientHeight} = element;
+		body.removeChild(element);
+		return {width: clientWidth, height: clientHeight}
+	}
+
 	getScrollFixPosition(scrollTop, scrollLeft) {
-		const maxScrollTop = $(document).height() - $(window).height();
+		const windowSize = this.getWindowSize() ;
+
+		const maxScrollTop = $(document).height() - windowSize.height;
 		if(scrollTop > maxScrollTop) scrollTop = Math.max(maxScrollTop, 0);
 
-		const maxScrollLeft = $(document).width() - $(window).width();
+		const maxScrollLeft = $(document).width() - windowSize.width;
 		if(scrollLeft > maxScrollLeft) scrollLeft = Math.max(maxScrollLeft, 0);
 
 		if(this.isTopScroll && this.isLeftScroll) return {scrollTop, scrollLeft};

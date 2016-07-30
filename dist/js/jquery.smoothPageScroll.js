@@ -4,7 +4,7 @@
  * https://github.com/kamem/jquery.smoothPageScroll.git
  * (c) 2016 kamem (@kamem)
  *
- * @version 0.1.0
+ * @version 0.2.0
  * @license Released under the MIT license
  * @author kamem
  */
@@ -81,15 +81,33 @@ smoothPageScroll_Scroll = function (exports) {
             scrollTop: !target ? 0 : isPositionHash ? parseInt(position[1]) : position.top,
             scrollLeft: !target ? 0 : isPositionHash ? parseInt(position[0]) : position.left
           };
+        }  //Last resort for the difference of each browser
+      },
+      {
+        key: 'getWindowSize',
+        value: function getWindowSize() {
+          var element = document.createElement('p');
+          var body = $('body')[0];
+          element.style.backgroundColor = 'fixed';
+          element.style.width = element.style.height = '100%';
+          body.appendChild(element);
+          var clientWidth = element.clientWidth;
+          var clientHeight = element.clientHeight;
+          body.removeChild(element);
+          return {
+            width: clientWidth,
+            height: clientHeight
+          };
         }
       },
       {
         key: 'getScrollFixPosition',
         value: function getScrollFixPosition(scrollTop, scrollLeft) {
-          var maxScrollTop = $(document).height() - $(window).height();
+          var windowSize = this.getWindowSize();
+          var maxScrollTop = $(document).height() - windowSize.height;
           if (scrollTop > maxScrollTop)
             scrollTop = Math.max(maxScrollTop, 0);
-          var maxScrollLeft = $(document).width() - $(window).width();
+          var maxScrollLeft = $(document).width() - windowSize.width;
           if (scrollLeft > maxScrollLeft)
             scrollLeft = Math.max(maxScrollLeft, 0);
           if (this.isTopScroll && this.isLeftScroll)
