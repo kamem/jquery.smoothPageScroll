@@ -1,5 +1,5 @@
 /*!
- * jquery.smoothPageScroll (2016-7-30)
+ * jquery.smoothPageScroll (2016-9-2)
  * Performs a smooth page scroll to an anchor on the same page.
  * https://github.com/kamem/jquery.smoothPageScroll.git
  * (c) 2016 kamem (@kamem)
@@ -171,7 +171,7 @@ jquerysmoothPageScrolljs = function (_Scroll) {
     var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
     var scroll = new _Scroll.Scroll(options);
     $(document).on('click', $(this).selector, function (e) {
-      var target = e.target.hash || options.target;
+      var target = e.currentTarget.hash || options.target;
       scroll.scrollStart(target, options.complate);
       return false;
     });

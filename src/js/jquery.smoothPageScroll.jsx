@@ -20,7 +20,7 @@ $.fn.smoothPageScroll = function(options = {}) {
 	const scroll = new Scroll(options);
 
 	$(document).on('click', $(this).selector, (e) => {
-		const target = e.target.hash || options.target;
+		const target = e.currentTarget.hash || options.target;
 		scroll.scrollStart(target, options.complate);
 		return false;
 	});
