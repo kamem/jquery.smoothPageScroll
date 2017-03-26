@@ -30,7 +30,7 @@ Because you are using a `easeOutQuart` to the initial value of` animate` of `eas
 
 ### Npm
 
-	npm install jquery.smooth-anchor
+	npm install jquery.smooth-page-scroll
 
 
 Usage
